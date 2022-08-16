@@ -2,8 +2,8 @@ class RobotSimulator
   attr_reader :board
   attr_accessor :robot, :command, :x, :y, :face_to
 
-  def initalize
-    self.board = Board.new
+  def initialize
+    @board = Board.new
   end
 
   def movement(instruction)
@@ -21,14 +21,16 @@ class RobotSimulator
       @command = $1
       @x = $2.to_i
       @y = $3.to_i
-      @face_to = $4
+      @face_to = $4 if Robot::FACE_POSITIONS.include?($4)
     end
   end
 
   def execute_command
+    original_robot = robot.dup
+
     case command
       when 'PLACE'
-        self.robot = Robot.new(x, y, face_to)
+        @robot = Robot.new(x, y, face_to)
       when 'LEFT'
         robot.left
       when 'RIGHT'
@@ -37,8 +39,12 @@ class RobotSimulator
         robot.move
       when 'REPORT'
         robot.report
+      when 'QUIT'
+        puts 'Thanks for playing!'
       else
-        puts "Invalid Coommand!"
+        puts 'Invalid Command! Try Again!'
     end
+
+    @robot = original_robot unless board.valid_position?(robot.cordinate_x, robot.cordinate_y)
   end
 end

@@ -37,8 +37,8 @@ describe RobotSimulator do
     end
   end
 
-  describe '.execute_movement' do
-    let(:robot) { Robot.new(0,0,'EAST') }
+  describe '.execute_command' do
+    let(:robot) { instance_double("Robot", cordinate_x: 0, cordinate_y: 0, face_to: 'EAST') }
 
     before do
       robot_simulator.stub(:robot) { robot }
@@ -52,7 +52,6 @@ describe RobotSimulator do
         robot_simulator.stub(:y) { 0 }
         robot_simulator.stub(:face_to) { 'NORTH' }
       end
-
 
       it 'calls robot new with right arguments' do
         expect(Robot).to receive(:new).with(0, 0, 'NORTH')

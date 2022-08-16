@@ -5,7 +5,6 @@ require './lib/robot_simulator.rb'
 
 robot_simulator = RobotSimulator.new
 
-
 instruction = nil
 
 while instruction != 'QUIT' do
