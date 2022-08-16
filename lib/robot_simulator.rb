@@ -1,6 +1,6 @@
 class RobotSimulator
   attr_reader :board
-  attr_accessor :robot, :command, :x, :y
+  attr_accessor :robot, :command, :x, :y, :face_to
 
   def initalize
     self.board = Board.new
