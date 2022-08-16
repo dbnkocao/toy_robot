@@ -9,7 +9,7 @@ class RobotSimulator
   def movement(instruction)
     extract_instruction(instruction)
 
-    return if @robot.nil? && command != 'PLACE'
+    return if robot.nil? && command != 'PLACE'
 
     execute_command
   end
@@ -26,17 +26,17 @@ class RobotSimulator
   end
 
   def execute_command
-    case @command
+    case command
       when 'PLACE'
-        @robot = Robot.new(@x, @y, @face_to)
+        self.robot = Robot.new(x, y, face_to)
       when 'LEFT'
-        @robot.left
+        robot.left
       when 'RIGHT'
-        @robot.right
+        robot.right
       when 'MOVE'
-        @robot.move
+        robot.move
       when 'REPORT'
-        @robot.report
+        robot.report
       else
         puts "Invalid Coommand!"
     end
