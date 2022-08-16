@@ -41,16 +41,18 @@ describe RobotSimulator do
     let(:robot) { instance_double("Robot", cordinate_x: 0, cordinate_y: 0, face_to: 'EAST') }
 
     before do
-      robot_simulator.stub(:robot) { robot }
-      robot_simulator.stub(:command) { instruction }
+      allow(robot_simulator).to receive(:robot).and_return(robot)
+      allow(robot_simulator).to receive(:command).and_return(instruction)
     end
 
     context 'PLACE command' do
+      let(:instruction) { 'PLACE' }
+
       before do
-        robot_simulator.stub(:command) { 'PLACE' }
-        robot_simulator.stub(:x) { 0 }
-        robot_simulator.stub(:y) { 0 }
-        robot_simulator.stub(:face_to) { 'NORTH' }
+        allow(robot_simulator).to receive(:command).and_return('PLACE')
+        allow(robot_simulator).to receive(:x).and_return(0)
+        allow(robot_simulator).to receive(:y).and_return(0)
+        allow(robot_simulator).to receive(:face_to).and_return('NORTH')
       end
 
       it 'calls robot new with right arguments' do
