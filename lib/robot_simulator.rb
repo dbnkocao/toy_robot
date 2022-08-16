@@ -1,28 +1,34 @@
-require 'byebug'
 class RobotSimulator
   attr_reader :board
-  attr_accessor :robot
+  attr_accessor :robot, :command, :x, :y
 
   def initalize
     self.board = Board.new
   end
 
   def movement(instruction)
-    regex_instruction = /(^\w*) ?(\d)?,?(\d)?,?(\w*)/
-    command, x ,y, face_to = nil
-
-    if regex_instruction =~ instruction
-      command = $1
-      x = $2.to_i
-      y = $3.to_i
-      face_to = $4
-    end
+    extract_instruction(instruction)
 
     return if @robot.nil? && command != 'PLACE'
 
-    case command
+    execute_command
+  end
+
+  def extract_instruction(instruction)
+    regex_instruction = /(^\w*) ?(\d)?,?(\d)?,?(\w*)/
+
+    if regex_instruction =~ instruction
+      @command = $1
+      @x = $2.to_i
+      @y = $3.to_i
+      @face_to = $4
+    end
+  end
+
+  def execute_command
+    case @command
       when 'PLACE'
-        self.robot = Robot.new(x, y, face_to)
+        @robot = Robot.new(@x, @y, @face_to)
       when 'LEFT'
         @robot.left
       when 'RIGHT'
