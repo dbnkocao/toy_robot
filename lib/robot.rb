@@ -29,4 +29,10 @@ class Robot
 
     @face_to = FACE_POSITIONS[current_index - 1]
   end
+
+  def report
+    puts "x = #{ @cordinate_x }"
+    puts "y = #{ @cordinate_y }"
+    puts "face = #{ @face_to }"
+  end
 end
