@@ -9,6 +9,13 @@ class Robot
     self.face_to = face
   end
 
+  def move
+    @cordinate_y = @cordinate_y - 1 if @face_to == 'NORTH'
+    @cordinate_y = @cordinate_y + 1 if @face_to == 'SOUTH'
+    @cordinate_x = @cordinate_x + 1 if @face_to == 'EAST'
+    @cordinate_x = @cordinate_x - 1 if @face_to == 'WEAST'
+  end
+
   def right
     current_index = FACE_POSITIONS.index(@face_to)
 
