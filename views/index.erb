@@ -7,6 +7,7 @@
     <title>Toy Robot</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/index.css" media="screen" />
+    <script type="text/javascript" src="/index.js"></script>
   </head>
   <body>
     <div class="container text-center">
@@ -55,9 +56,9 @@
           <input type="hidden" name="face_to" value="<%= @robot.face_to if @robot %>"/>
           <input type="hidden" id="instruction" name="instruction">
 
-          <button class="btn btn-info" onclick="document.getElementById('instruction').value = 'LEFT'">LEFT</button>
-          <button class="btn btn-info" onclick="document.getElementById('instruction').value = 'RIGHT'">RIGHT</button>
-          <button class="btn btn-info" onclick="document.getElementById('instruction').value = 'MOVE'">MOVE</button>
+          <button class="btn btn-info move-btn">LEFT</button>
+          <button class="btn btn-info move-btn">RIGHT</button>
+          <button class="btn btn-info move-btn">MOVE</button>
         </form>
       </div>
     <% end %>
