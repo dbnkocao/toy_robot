@@ -35,4 +35,8 @@ class Robot
     puts "y = #{ @cordinate_y }"
     puts "face = #{ @face_to }"
   end
+
+  def valid?
+    cordinate_x.is_a?(Integer) && cordinate_y.is_a?(Integer) && FACE_POSITIONS.include?(face_to)
+  end
 end

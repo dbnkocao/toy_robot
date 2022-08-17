@@ -1,0 +1,22 @@
+.col {
+  background: #D3D3D3;
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+}
+
+.robot.north:after {
+    content: "\25B2";
+}
+
+.robot.east:after {
+  content: "\25BA";
+}
+
+.robot.south:after {
+  content: "\25BC";
+}
+
+.robot.weast:after {
+  content: "\25C4";
+}

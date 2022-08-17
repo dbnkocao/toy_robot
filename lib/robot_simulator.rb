@@ -1,6 +1,7 @@
 class RobotSimulator
   attr_reader :board
   attr_accessor :robot, :command, :x, :y, :face_to
+  REGEX_INSTRUCTION = /(^\w*) ?(\d)?,?(\d)?,?(\w*)/
 
   def initialize
     @board = Board.new
@@ -15,9 +16,7 @@ class RobotSimulator
   end
 
   def extract_instruction(instruction)
-    regex_instruction = /(^\w*) ?(\d)?,?(\d)?,?(\w*)/
-
-    if regex_instruction =~ instruction
+    if REGEX_INSTRUCTION =~ instruction
       @command = $1
       @x = $2.to_i
       @y = $3.to_i
@@ -45,6 +44,6 @@ class RobotSimulator
         puts 'Invalid Command! Try Again!'
     end
 
-    @robot = original_robot unless board.valid_position?(robot.cordinate_x, robot.cordinate_y)
+    @robot = original_robot if !board.valid_position?(robot.cordinate_x, robot.cordinate_y) || !@robot.valid?
   end
 end
