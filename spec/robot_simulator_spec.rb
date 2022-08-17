@@ -38,7 +38,7 @@ describe RobotSimulator do
   end
 
   describe '.execute_command' do
-    let(:robot) { instance_double("Robot", cordinate_x: 0, cordinate_y: 0, face_to: 'EAST') }
+    let(:robot) { instance_double("Robot", cordinate_x: 0, cordinate_y: 0, face_to: 'EAST', valid?: true) }
 
     before do
       allow(robot_simulator).to receive(:robot).and_return(robot)

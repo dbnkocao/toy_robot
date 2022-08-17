@@ -20,7 +20,7 @@ class RobotSimulator
       @command = $1
       @x = $2.to_i
       @y = $3.to_i
-      @face_to = $4 if Robot::FACE_POSITIONS.include?($4)
+      @face_to = $4
     end
   end
 
@@ -44,6 +44,8 @@ class RobotSimulator
         puts 'Invalid Command! Try Again!'
     end
 
-    @robot = original_robot if !board.valid_position?(robot.cordinate_x, robot.cordinate_y) || !@robot.valid?
+    if !board.valid_position?(robot.cordinate_x, robot.cordinate_y) || !robot.valid?
+      @robot = original_robot
+    end
   end
 end
