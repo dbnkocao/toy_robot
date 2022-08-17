@@ -1,3 +1,3 @@
-require '../toy_robot_web'
+require './toy_robot_web'
 
 run ToyRobotWeb
