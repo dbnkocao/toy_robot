@@ -127,4 +127,4 @@ For using Web run the above command
 rackup config.ru
 ```
 
-There ara a example in [toyrobot-daniel.herokuapp.com](https://toyrobot-daniel.herokuapp.com)
+There are a example in [toyrobot-daniel.herokuapp.com](https://toyrobot-daniel.herokuapp.com)
