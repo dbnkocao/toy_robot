@@ -6,6 +6,10 @@
   * [Constraints](./README.md#constraints)
   * [Example Input and Output](./README.md#example-input-and-output)
   * [Deliverables](./README.md#deliverables)
+* [Usage](./README.md#usage)
+  * [Build](./README.md#build)
+  * [Console](./README.md#console)
+  * [Web](./README.md#web)
 
 ## Description
 
@@ -102,3 +106,25 @@ build your solution.
 Please engineer your solution to a standard you consider suitable for
 production. It is not required to provide any graphical output showing the
 movement of the toy robot on the CLI, only on the web.
+
+## Usage
+
+### Build
+Install gems
+```
+bundle install
+```
+
+### Console
+For using CLI run the above command
+```
+ruby toy_robot_console.rb
+```
+
+### Web
+For using Web run the above command
+```
+rackup config.ru
+```
+
+There ara a example in [toyrobot-daniel.herokuapp.com](https://toyrobot-daniel.herokuapp.com)
