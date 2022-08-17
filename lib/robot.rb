@@ -31,9 +31,7 @@ class Robot
   end
 
   def report
-    puts "x = #{ @cordinate_x }"
-    puts "y = #{ @cordinate_y }"
-    puts "face = #{ @face_to }"
+    puts "#{ @cordinate_x },#{ @cordinate_y },#{ @face_to }"
   end
 
   def valid?
