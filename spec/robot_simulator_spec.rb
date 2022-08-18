@@ -1,5 +1,7 @@
 describe RobotSimulator do
   let(:robot_simulator) { RobotSimulator.new }
+  let(:robot) { instance_double("Robot", cordinate_x: 0, cordinate_y: 0, face_to: 'EAST', valid?: true) }
+
 
   describe '.extract_instruction' do
     let(:instruction) { 'PLACE 0,0,NORTH' }
@@ -38,8 +40,6 @@ describe RobotSimulator do
   end
 
   describe '.execute_command' do
-    let(:robot) { instance_double("Robot", cordinate_x: 0, cordinate_y: 0, face_to: 'EAST', valid?: true) }
-
     before do
       allow(robot_simulator).to receive(:robot).and_return(robot)
       allow(robot_simulator).to receive(:command).and_return(instruction)
@@ -99,6 +99,68 @@ describe RobotSimulator do
         expect(robot_simulator.robot).to receive(:report)
 
         robot_simulator.execute_command
+      end
+    end
+  end
+
+  describe '.movement' do
+    let(:instruction) { 'LEFT' }
+
+    it 'calls extract_instruction with gived paramater' do
+      expect(robot_simulator).to receive(:extract_instruction).with(instruction)
+
+      robot_simulator.movement(instruction)
+    end
+
+    it 'returns false when no robot' do
+      allow(robot_simulator).to receive(:robot).and_return(nil)
+
+      expect(robot_simulator.movement(instruction)).to eq false
+    end
+
+    it 'calls execute_method' do
+      expect(robot_simulator).to receive(:execute_command)
+
+      allow(robot_simulator).to receive(:robot).and_return(robot)
+
+      robot_simulator.movement(instruction)
+    end
+  end
+
+  describe '.extract_instruction' do
+    context 'PLACE' do
+      it 'extract command, cordinate_x, cordinate_y and face_to' do
+        expect {
+          robot_simulator.extract_instruction('PLACE 1,1,SOUTH')
+        }.to change{ robot_simulator.command }.to('PLACE')
+         .and change{ robot_simulator.x }.to(1)
+         .and change{ robot_simulator.y}.to(1)
+         .and change{ robot_simulator.face_to}.to('SOUTH')
+      end
+    end
+
+    context 'LEFT' do
+      it 'extract command' do
+        expect {
+          robot_simulator.extract_instruction('LEFT')
+        }.to change{ robot_simulator.command }.to('LEFT')
+
+      end
+    end
+
+    context 'RIGHT' do
+      it 'extract command' do
+        expect {
+          robot_simulator.extract_instruction('RIGHT')
+        }.to change{ robot_simulator.command }.to('RIGHT')
+      end
+    end
+
+    context 'MOVE' do
+      it 'extract command' do
+        expect {
+          robot_simulator.extract_instruction('MOVE')
+        }.to change{ robot_simulator.command }.to('MOVE')
       end
     end
   end

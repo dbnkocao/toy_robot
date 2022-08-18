@@ -10,7 +10,7 @@ class RobotSimulator
   def movement(instruction)
     extract_instruction(instruction)
 
-    return if robot.nil? && command != 'PLACE'
+    return false if robot.nil? && command != 'PLACE'
 
     execute_command
   end
