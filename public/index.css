@@ -1,12 +1,16 @@
-.col {
+.col-board {
   background: #D3D3D3;
   height: 50px;
   width: 50px;
-  border-style: solid;
+  border-style: outset;
+}
+
+.robot {
+  background-image: 'robot.png';
 }
 
 .robot.north:after {
-    content: "\25B2";
+  content: "\25B2";
 }
 
 .robot.east:after {
@@ -19,4 +23,25 @@
 
 .robot.weast:after {
   content: "\25C4";
+}
+
+.content {
+  margin-top: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 1%;
+}
+
+html {
+  background: url(background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.card {
+  padding: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
 }

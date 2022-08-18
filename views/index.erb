@@ -10,27 +10,36 @@
     <script type="text/javascript" src="/index.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   </head>
-  <body>
+  <body class='content'>
+    <div class='text-center'>
+      <h1>Toy Robot</h1>
+    </div>
     <div class="container text-center">
       <form action="/place" method="post">
-        <div>
-          <label for="x" class="form-label">X</label>
-          <input name="x" type="number" id="x" min="0" max="4" value="<%= @robot ? @robot.cordinate_x : 0 %>" required>
-        </div>
-        <div>
-          <label for="y" class="form-label">Y</label>
-          <input name="y" type="number" id="y" min="0" max="4" value="<%= @robot ? @robot.cordinate_y : 0 %>" required>
-        </div>
-        <div>
-          <label for="face_to">Face</label>
-          <select name="face_to" id="face_to">
-            <% Robot::FACE_POSITIONS.each do |face_position| %>
-            <option <%= "selected" if @robot && face_position == @robot.face_to%>><%= face_position %></option>
-            <% end %>
-          </select>
-        </div>
-        <div>
-          <button class="btn btn-success">PLACE</button>
+        <div class="text-center">
+          <div class="card">
+            <div class='row text-center'>
+              <div class='col'>
+                <label for="x" class="form-label">X</label>
+                <input name="x" type="number" id="x" min="0" max="4" value="<%= @robot ? @robot.cordinate_x : 0 %>" required>
+              </div>
+              <div class='col'>
+                <label for="y" class="form-label">Y</label>
+                <input name="y" type="number" id="y" min="0" max="4" value="<%= @robot ? @robot.cordinate_y : 0 %>" required>
+              </div>
+              <div class='col'>
+                <label for="face_to">Face</label>
+                <select name="face_to" id="face_to">
+                  <% Robot::FACE_POSITIONS.each do |face_position| %>
+                  <option <%= "selected" if @robot && face_position == @robot.face_to%>><%= face_position %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-success">PLACE</button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
@@ -39,9 +48,9 @@
       <% Board::VERTICAL_SIZE.times do |y| %>
         <div class="row">
           <% Board::HORIZONTAL_SIZE.times do |x| %>
-            <div class="col">
+            <div class="col col-board">
               <% if @robot && @robot.cordinate_y == y && @robot.cordinate_x == x %>
-                <span class="robot <%= @robot.face_to.downcase%>"></span>
+                <span class="robot <%= @robot.face_to.downcase%>"><img src="robot.png"></span>
               <% end %>
             </div>
           <% end %>
@@ -57,9 +66,9 @@
           <input type="hidden" name="face_to" value="<%= @robot.face_to if @robot %>"/>
           <input type="hidden" id="instruction" name="instruction">
 
-          <button class="btn btn-info move-btn">LEFT</button>
-          <button class="btn btn-info move-btn">RIGHT</button>
-          <button class="btn btn-info move-btn">MOVE</button>
+          <button class="btn btn-secondary move-btn">LEFT</button>
+          <button class="btn btn-secondary move-btn">RIGHT</button>
+          <button class="btn btn-secondary move-btn">MOVE</button>
         </form>
       </div>
     <% end %>
